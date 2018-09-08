@@ -5,7 +5,7 @@ int indx;
 
 void initArray(int nelem_in_array, int *array);
 void printArray(int nelem_in_array, int *array);
-int squareArray(int nelem_in_array, int *array);
+int squareArray(int nelem_in_array, int *array, int *copy_array);
 
 int main(void)
 {
@@ -19,17 +19,13 @@ int main(void)
   del = (int *)malloc(nelem*sizeof(int));
 
 /* Initialize array1 */
-  initArray(nelem, array1);  
-  
+  initArray(nelem, array1);
 /* Print the elements of array1 */
   printf("array1 = ");
   printArray(nelem, array1);
 
-/* Copy array1 to array2 */
-  array2 = array1;
-
 /* Pass array2 to the function 'squareArray( )' */
-  squareArray(nelem, array2);
+  squareArray(nelem, array1, array2);
 
   printf("Squared array2\n");
 
@@ -60,15 +56,15 @@ void initArray(const int nelem_in_array, int *array)
   }  
 } 
 
-int squareArray(const int nelem_in_array, int *array)
+int squareArray(const int nelem_in_array, int *array, int *copy_array)
 {
   int indx;
 
   for (indx = 0; indx < nelem_in_array; indx++)
   {
-    array[indx] *= array[indx];
+    copy_array[indx] = array[indx] *  array[indx];
   }
-  return *array;
+  return *copy_array;
 }
 
 void printArray(const int nelem_in_array, int *array)
